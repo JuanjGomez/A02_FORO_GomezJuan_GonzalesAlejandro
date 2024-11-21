@@ -1,6 +1,28 @@
 <?php
     session_start();
+    try{
+        // Se verifica si el usuario ya existe
+        $sqlSeguridad = "SELECT * FROM tbl_preguntas";
+        $stmtSeguridad = $conn->prepare($sqlSeguridad);
+        $stmtSeguridad->execute();
+        $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
+
+        // Se verifica si hay un usuario que existe y es igual a el
+        if($resultados){  //cambiar esto
+                $_SESSION['identico'] = true;
+                header('Location: ../view/formRegistro.php');
+                exit();
+            
+        }
+
+
+    } catch (PDOException $e){
+        echo "Error: ". $e->getMessage();
+        die();
+    }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +35,7 @@
     <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="">NEW</a>
+            <a class="navbar-brand" href="formPregunta.php">NEW</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="formPregunta.php">Link</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
