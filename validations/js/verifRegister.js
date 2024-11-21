@@ -5,12 +5,6 @@ document.getElementById("username").onblur = function validaUsername() {
         errorUser = "El campo no puede estar vacío"
     } else if(username.length < 2){
         errorUser = "El campo debe tener al menos 2 caracteres"
-    } else if(!letras(username)){
-        errorUser = "El campo solo puede contener letras"
-    }
-    function letras(username){
-        let regex = /^[a-zA-Z]+$/
-        return regex.test(username)
     }
     document.getElementById("errorUser").innerHTML = errorUser
     verificarForm()

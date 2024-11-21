@@ -15,7 +15,7 @@
         if($resultados){
             if(password_verify($pwd, $resultados['password_usu'])){
                 $_SESSION['id'] = $resultados['id_usu'];
-                header('Location: inicio.php');
+                header('Location: ../view/inicio.php');
                 exit();
             } else {
 

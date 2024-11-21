@@ -14,5 +14,6 @@
         <section></section>
         <section></section>
     </div>
+<?php header("location:./view/formRegistro.php");?>
 </body>
 </html>
