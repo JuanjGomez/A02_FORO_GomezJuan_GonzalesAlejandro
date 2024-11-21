@@ -16,21 +16,18 @@
 
         try{
             // Se verifica si el usuario ya existe
-            $sqlSeguridad = "SELECT * FROM tbl_usuarios WHERE username_usu = :username_usu AND nombre_real = :nombre_real AND email_usu = :email_usu";
+            $sqlSeguridad = "SELECT * FROM tbl_usuarios WHERE username_usu = :username_usu";
             $stmtSeguridad = $conn->prepare($sqlSeguridad);
             $stmtSeguridad->bindParam(':username_usu', $username);
-            $stmtSeguridad->bindParam(':nombre_real', $nombreReal);
-            $stmtSeguridad->bindParam(':email_usu', $email);
             $stmtSeguridad->execute();
             $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
 
             // Se verifica si hay un usuario que existe y es igual a el
-            if($resultados){
-                if(password_verify($pwd, $resultados['password_usu'])){
+            if($resultados){  //cambiar esto
                     $_SESSION['identico'] = true;
                     header('Location: ../view/formRegistro.php');
                     exit();
-                }
+                
             }
 
             // Si no hay resultados, se procede a insertar el nuevo usuario
