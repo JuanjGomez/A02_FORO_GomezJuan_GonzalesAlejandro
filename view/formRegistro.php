@@ -15,7 +15,7 @@
     <h1>RESGISTRARSE</h1>
     <div>
         <p id="indicaciones">Completa el formulario</p>
-        <form method="POST" action="../validations/crearUser.php">
+        <form method="POST" action="../process/crearUser.php">
             <label for="username">Nombre de usuario:<input type="text" name="username" id="username" placeholder="Introduce un username"></label><br>
             <p id="errorUser"></p>
             <label for="nombreReal">Nombre real:<input type="text" name="nombreReal" id="nombreReal" placeholder="Introduce tu nombre real"></label><br>
