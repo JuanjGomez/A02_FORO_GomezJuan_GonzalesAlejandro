@@ -1,20 +1,12 @@
 <?php
     session_start();
+    require_once "../process/conexion.php";
     try{
         // Se verifica si el usuario ya existe
         $sqlSeguridad = "SELECT * FROM tbl_preguntas";
         $stmtSeguridad = $conn->prepare($sqlSeguridad);
         $stmtSeguridad->execute();
-        $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
-
-        // Se verifica si hay un usuario que existe y es igual a el
-        if($resultados){  //cambiar esto
-                $_SESSION['identico'] = true;
-                header('Location: ../view/formRegistro.php');
-                exit();
-            
-        }
-
+        $resultados = $stmtSeguridad->fetchAll(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e){
         echo "Error: ". $e->getMessage();
@@ -73,6 +65,16 @@
             </div>
         </div>
     </nav>
+    <?php
+   if ($resultados) {
+    foreach ($resultados as $resultado) {
+        echo "<div>" . $resultado['titulo_preg'] . "</div>";
+        echo "<div>" . $resultado['descripcion_preg'] . "</div>";
+        echo "<div>" . $resultado['fecha_publicacion'] . "</div>";
+    }
+}
+?>
+
     </header>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
