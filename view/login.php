@@ -1,3 +1,9 @@
+<?php
+    if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+        header('Location: ../index.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

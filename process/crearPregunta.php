@@ -24,7 +24,7 @@
             $stmtUser->bindParam(':id_usu', $id);
             $stmtUser->execute();
 
-            header('Location:../view/inicio.php');
+            header('Location:../index.php');
             exit();
         } catch (PDOException $e){
             echo "Error: ". $e->getMessage();

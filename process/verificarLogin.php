@@ -15,15 +15,17 @@
         if($resultados){
             if(password_verify($pwd, $resultados['password_usu'])){
                 $_SESSION['id'] = $resultados['id_usu'];
-                header('Location: ../view/inicio.php');
+                $_SESSION['username'] = $resultados['username_usu'];
+                $_SESSION['loginSuccess'] = true;
+                header('Location: ../index.php');
                 exit();
             } else {
 
-                header('Location:../login.php');
+                header('Location:../view/login.php');
                 exit();
             }
         } else {
-            header('Location:../login.php');
+            header('Location:../view/login.php');
             exit();
         }
     }

@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(isset($_SESSION['loginSuccess']) && $_SESSION['loginSuccess']){
+        $user = $_SESSION['username'];
+        echo "<script> let loginSuccess = true; let username = '$user';</script>";
+        unset($_SESSION['loginSuccess']);
+    }
     require_once './process/conexion.php';
     try{
         // Se verifica si el usuario ya existe
@@ -9,12 +14,12 @@
         $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
 
         // Se verifica si hay un usuario que existe y es igual a el
-        if($resultados){  //cambiar esto
-                $_SESSION['identico'] = true;
-                header('Location: ../view/formRegistro.php');
-                exit();
+        // if($resultados){  //cambiar esto
+        //         $_SESSION['identico'] = true;
+        //         header('Location: ../view/formRegistro.php');
+        //         exit();
             
-        }
+        // }
 
 
     } catch (PDOException $e){
@@ -29,7 +34,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" integrity="sha256-qWVM38RAVYHA4W8TAlDdszO1hRaAq0ME7y2e9aab354=" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/inicio.css">
     <title>Document</title>
 </head>
 <body>
@@ -62,7 +69,6 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
-                    <a href="../process/cerrarSession.php" class="btn btn-outline-success">Log off</a>
                 </ul>
                 
                 <form class="d-flex" role="search" method="GET" action="">
@@ -72,13 +78,52 @@
                 </form>
             </div>
         </div>
-        <form method="POST" action="./view/login.php">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <form method="POST" action="./view/formRegistro.php">
-            <button type="submit" class="btn btn-success">Registrarse</button>
-        </form>
+        <?php echo !isset($_SESSION['id']) ? "<form method='POST' action='./view/login.php'>
+                                                <button type='submit' class='btn btn-primary'>Login</button>
+                                            </form>" : ""; ?>
+        <?php echo !isset($_SESSION['id']) ? "<form method='POST' action='./view/formRegistro.php'>
+                                                <button type='submit' class='btn btn-success'>Registrarse</button>
+                                            </form>" : ""; ?>
+        <?php echo isset($_SESSION['id']) ? "<a href='./process/cerrarSession.php'><button class='btn btn-danger'>Cerrar Sesion</button></a>" : ""; ?>
     </nav>
+    <div id="principal">
+        <section id="left">
+            <h3>Funcionalidades</h3>
+        </section>
+        <section id="center">
+            <h3>Publicaciones</h3>
+            <?php
+                echo isset($_SESSION['id']) ? "<div>
+                    <h5>Que estas pensando?</h5>
+                    <p>Realiza una publicacion ---> <a href='./view/formPregunta.php'><button>Crear Pregunta</button></a></p>
+                </div>" : "";
+                if($resultados){
+                    echo "<div class='card'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>".$resultados['titulo_preg']."</h5>
+                                <p class='card-text'>".$resultados['descripcion_preg']."</p>
+                                <a href='#' class='btn btn-primary'>Ver más</a>
+                            </div>
+                        </div>";
+                } else {
+                    echo "<p>No hay publicaciones.</p>";
+                }
+            ?>
+        </section>
+        <section id="right">
+            <h3>Solicitudes</h3>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js" integrity="sha256-1m4qVbsdcSU19tulVTbeQReg0BjZiW6yGffnlr/NJu4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        if (typeof loginSuccess !== 'undefined' && loginSuccess) {
+            Swal.fire({
+                title: 'Sesión iniciada',
+                text: '¡Bienvenido ' + username + '!',
+                icon: 'success'
+            });
+        }
+    </script>
 </body>
 </html>
