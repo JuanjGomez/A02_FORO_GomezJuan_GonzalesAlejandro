@@ -9,12 +9,12 @@
         $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
 
         // Se verifica si hay un usuario que existe y es igual a el
-        if($resultados){  //cambiar esto
-                $_SESSION['identico'] = true;
-                header('Location: ../view/formRegistro.php');
-                exit();
+        // if($resultados){  //cambiar esto
+        //         $_SESSION['identico'] = true;
+        //         header('Location: ../view/formRegistro.php');
+        //         exit();
             
-        }
+        // }
 
 
     } catch (PDOException $e){
