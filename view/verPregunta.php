@@ -30,7 +30,7 @@
     }
     try{
         // Consulta para ver las respuestas
-        $sqlRespuesta = "SELECT * FROM tbl_respuestas r INNER JOIN tbl_usuarios u ON r.id_usu = u.id_usu WHERE id_preg = :id";
+        $sqlRespuesta = "SELECT * FROM tbl_respuestas r INNER JOIN tbl_usuarios u ON r.id_usu = u.id_usu WHERE id_preg = :id ORDER BY r.fecha_resp_usu DESC";
         $stmtRespuestas = $conn->prepare($sqlRespuesta);
         $stmtRespuestas->bindParam(':id', $idPregunta);
         $stmtRespuestas->execute();

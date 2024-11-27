@@ -48,29 +48,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <?php echo !isset($_SESSION['id']) ? "<form method='POST' action='./view/login.php'>
-                                                <button type='submit' class='btn btn-primary'>Login</button>
-                                            </form>" : ""; ?>
-                        <a class="nav-link active" aria-current="page" href="./view/miPregunta.php">Mis Preguntas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="formPregunta.php">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
+                    <?php
+                    echo isset($_SESSION['id']) ? "<li class='nav-item'>
+                                                    <a class='nav-link active' aria-current='page' href='./view/miPregunta.php'>Mis Preguntas</a>
+                                                </li>" : "";
+                    ?>
                 </ul>
                 <?php
                     echo isset($_GET['query']) ? "<a href='index.php' class='dropdown-item'>Borrar Filtros</a>" : "";
@@ -98,7 +80,7 @@
             <h3>Publicaciones</h3>
             <?php
                 if(isset($_SESSION['id'])){
-                    echo "<div>
+                    echo "<div class='card'>
                         <h5>¿Cual es tu duda?</h5>
                         <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
                     </div>";
