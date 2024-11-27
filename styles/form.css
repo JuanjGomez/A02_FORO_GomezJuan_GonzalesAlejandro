@@ -1,51 +1,108 @@
-body {
-    background-color: #EBFFDB;
-    font-family: Arial, sans-serif;
+/* General Reset */
+body, h1, h3, h5, p, a, label {
     margin: 0;
     padding: 0;
-    color: #333; 
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a5aaee; /* Fondo igual que inicio.css */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Igual al navbar en inicio.css */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #007bff; /* Azul primario */
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+    margin: 20px 0;
+}
+
+div {
+    background-color: #ffffff; /* Fondo blanco para contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra similar al estilo de inicio.css */
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#indicaciones {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 14px;
 }
 
 form {
-    background-color: #FFFFFF; 
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
     font-weight: bold;
+    color: #007bff; /* Azul primario */
+    margin-bottom: 5px;
+    text-align: left;
 }
 
 input, select {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
     box-sizing: border-box;
 }
 
+input:focus, select:focus {
+    outline: none;
+    border-color: #007bff; /* Azul para foco */
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #007bff; /* Botón azul primario */
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px;
+    border-radius: 8px; /* Consistente con otros bordes */
     cursor: pointer;
-    border-radius: 4px;
     font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra similar */
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #0056b3; /* Azul más oscuro en hover */
 }
 
-.error{
+.error {
     color: red;
     font-size: 14px;
-    margin-top: 8px;
+    text-align: left;
+    margin-top: -10px;
 }

@@ -23,8 +23,17 @@
             $stmtUser->bindParam(':descripcion_preg', $descripcion);
             $stmtUser->bindParam(':id_usu', $id);
             $stmtUser->execute();
+            $idPregunta = $conn->lastInsertId();
 
-            header('Location:../index.php');
+            $_SESSION['preguntaCreada'] = true;
+            ?>
+            <form method="POST" action="../view/verPregunta.php" name="formulario">
+                <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo $idPregunta ?>">
+            </form>
+            <script>
+                document.formulario.submit();
+            </script>
+            <?php
             exit();
         } catch (PDOException $e){
             echo "Error: ". $e->getMessage();

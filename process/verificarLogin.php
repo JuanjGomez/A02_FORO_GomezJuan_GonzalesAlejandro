@@ -20,12 +20,11 @@
                 header('Location: ../index.php');
                 exit();
             } else {
-
-                header('Location:../view/login.php');
+                header('Location:../view/login?error=1');
                 exit();
             }
         } else {
-            header('Location:../view/login.php');
+            header('Location:../view/login.php?error=1');
             exit();
         }
     }

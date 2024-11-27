@@ -73,18 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo_preg']); ?>" required>
-                <div id="errorTitulo" class="text-danger"></div> <!-- Error mensaje para el título -->
+                <p id="errorTitulo" class="error"></p>
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><?php echo htmlspecialchars($pregunta['descripcion_preg']); ?></textarea>
-                <div id="errorDescripcion" class="text-danger"></div> <!-- Error mensaje para la descripción -->
+                <p id="errorDescripcion" class="error"></p>
             </div>
-            <button type="submit" id="boton" class="btn btn-primary" disabled>Actualizar</button> <!-- Botón deshabilitado por defecto -->
+            <input type="submit" id="boton" class="btn btn-primary" disabled></button>
         </form>
     </div>
-
-    <!-- Enlace al archivo JS para validaciones -->
-    <script src="../validations\js/verifModPregunta.js"></script>
+    <script src="../validations/js/verifPregunta.js"></script>
 </body>
 </html>
