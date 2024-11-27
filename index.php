@@ -26,7 +26,7 @@
         echo "Error: ". $e->getMessage();
         die();
     }
-
+    require_once './process/busqueda.php';
 ?>
 
 <!DOCTYPE html>
@@ -48,31 +48,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <?php 
+                    <?php
                     echo isset($_SESSION['id']) ? "<li class='nav-item'>
-                       
-                        <a class='nav-link activ' aria-current='page' href='./view/miPregunta.php'>Mis Preguntas</a>
-                    </li>" : "";
+                                                    <a class='nav-link active' aria-current='page' href='./view/miPregunta.php'>Mis Preguntas</a>
+                                                </li>" : "";
                     ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="formPregunta.php">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
                 </ul>
-                
+                <?php
+                    echo isset($_GET['query']) ? "<a href='index.php' class='dropdown-item'>Borrar Filtros</a>" : "";
+                ?>
                 <form class="d-flex" role="search" method="GET" action="">
                     <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -96,35 +80,68 @@
             <h3>Publicaciones</h3>
             <?php
                 if(isset($_SESSION['id'])){
-                    echo "<div>
+                    echo "<div class='card'>
                         <h5>¿Cual es tu duda?</h5>
                         <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
                     </div>";
                 }
-                
-
-                if($resultados){
-                    foreach($resultados as $fila){
-                        echo "<div class='card'>
-                                <div class='card-body'>
-                                    <h5 class='card-title'>".$fila['titulo_preg']."</h5>
-                                    <p class='card-text'>".$fila['descripcion_preg']."</p>
-                                    <p class='card-text'>".$fila['fecha_publicacion']."</p>
-                                    <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
-                                    <form method='POST' action='./view/verPregunta.php'>
-                                        <input type='hidden' name='idPregunta' id='idPregunta' value='".$fila['id_preg']."'>
-                                        <button type='submit' class='btn btn-primary'>Ver Pregunta</button>
-                                    </form>
-                                </div>
-                            </div><br>";
+                if(!isset($_GET['query'])){
+                    if($resultados){
+                        foreach($resultados as $fila){
+                            echo "<div class='card'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>".$fila['titulo_preg']."</h5>
+                                        <p class='card-text'>".$fila['descripcion_preg']."</p>
+                                        <p class='card-text'>".$fila['fecha_publicacion']."</p>
+                                        <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
+                                        <form method='POST' action='./view/verPregunta.php'>
+                                            <input type='hidden' name='idPregunta' id='idPregunta' value='".$fila['id_preg']."'>
+                                            <button type='submit' class='btn btn-primary'>Ver Pregunta</button>
+                                        </form>
+                                    </div>
+                                </div><br>";
+                        }
+                    } else {
+                        echo "<p>No hay publicaciones.</p>";
                     }
                 } else {
-                    echo "<p>No hay publicaciones.</p>";
+                    if($resultadosPreguntas){
+                        foreach($resultadosPreguntas as $fila){
+                            echo "<div class='card'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>".$fila['titulo_preg']."</h5>
+                                        <p class='card-text'>".$fila['descripcion_preg']."</p>
+                                        <p class='card-text'>".$fila['fecha_publicacion']."</p>
+                                        <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
+                                        <form method='POST' action='./view/verPregunta.php'>
+                                            <input type='hidden' name='idPregunta' id='idPregunta' value='".$fila['id_preg']."'>
+                                            <button type='submit' class='btn btn-primary'>Ver Pregunta</button>
+                                        </form>
+                                    </div>
+                                </div><br>";
+                        }
+                    } else {
+                        echo "<p>No hay publicaciones relacionadas con la búsqueda.</p>";
+                    }
                 }
             ?>
         </section>
         <section id="right">
-            <h3>Solicitudes</h3>
+            <h3>USUARIOS</h3>
+            <?php
+                if(isset($_GET['query'])){
+                    if($resultadosUsuarios){
+                        foreach($resultadosUsuarios as $fila){
+                            echo "<div>
+                            <p>Usuario: ".$fila['username_usu']."</p>
+                            <p>Nombre: ".$fila['nombre_real']."</p>
+                            </div>";
+                        }
+                    } else {
+                        echo "<p>No hay usuarios encontrados.</p>";
+                    }
+                }
+            ?>
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js" integrity="sha256-1m4qVbsdcSU19tulVTbeQReg0BjZiW6yGffnlr/NJu4=" crossorigin="anonymous"></script>

@@ -19,8 +19,12 @@
     <title>Document</title>
 </head>
 <body>
+    <form method="POST" action="verPregunta.php">
+        <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo $idPregunta; ?>">
+        <button type="submit" class="btn btn-danger">VOLVER</button>
+    </form>
     <form method="POST" action="../process/crearRespuesta.php">
-        <input type="hidden" name="idPregunta" id="IdPregunta" value="<?php echo $idPregunta; ?>">
+        <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo $idPregunta; ?>">
         <label for="respuesta">Introduce tu respuesta:<input type="textarea" name="respuesta" id="respuesta"></label>
         <p id="errorRespuesta" class="errorRespuesta"></p>
         <input type="submit" id="boton" value="Enviar respuesta">

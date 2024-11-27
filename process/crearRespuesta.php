@@ -26,14 +26,13 @@
 
             $_SESSION['respuestaSubida'] = true;
             ?>
-            <form method="POST" action="verPregunta" name="formulario">
+            <form method="POST" action="../view/verPregunta.php" name="formulario">
                 <input type="hidden" name="idPregunta" value="<?php echo $idPregunta; ?>">
             </form>
             <script>
                 document.formulario.submit();
             </script>
             <?php
-            header('Location:../index.php');
             exit();
         } catch(PDOException $e){
             echo "Error: ". $e->getMessage();
