@@ -16,16 +16,31 @@
 
         try{
             // Se verifica si el usuario ya existe
-            $sqlSeguridad = "SELECT * FROM tbl_usuarios WHERE username_usu = :username_usu";
+            $sqlSeguridad = "SELECT * FROM tbl_usuarios WHERE username_usu = :username_usu OR email_usu = :email_usu";
             $stmtSeguridad = $conn->prepare($sqlSeguridad);
             $stmtSeguridad->bindParam(':username_usu', $username);
+            $stmtSeguridad->bindParam(':email_usu', $email);
             $stmtSeguridad->execute();
             $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
 
             // Se verifica si hay un usuario que existe y es igual a el
-            if($resultados){  //cambiar esto
+            if($resultados){
+                // echo "<div class='card text-center'>";
+                //     echo "<h4 class='card-header'>Usuario: " . htmlspecialchars($fila['u_username']) . "</h4>";
+                //     echo "<p>Nombre Real: " . htmlspecialchars($fila['u_name_real']) . "</p>";
+                //     echo "<form action='../queries/solicitudAmistad.php' method='POST'>";
+                //     echo "<input type='hidden' name='usuario_recibe' value='". htmlspecialchars($fila['u_id'])."'>";
+                //     echo "<button type='submit' class='btn btn-primary'>Enviar Solicitud de Amistad</button>";
+                //     echo "</form>";
+                //     echo "</div><br>";
+                  //cambiar esto
                     $_SESSION['identico'] = true;
-                    header('Location: ../view/formRegistro.php');
+                    echo "<form method='POST' action='../view/formRegistro.php'>";
+                    echo "<input type='hidden' name='username' value='" . $username ."'>";
+                    echo "<input type='hidden' name='nombreReal' value='" . $nombreReal ."'>";
+                    echo "<input type='hidden' name='email' value='" . $email ."'>";
+                    echo "<button type='submit' class='btn btn-primary'>Enviar Solicitud de Amistad</button>";
+                    echo "</form>";
                     exit();
                 
             }

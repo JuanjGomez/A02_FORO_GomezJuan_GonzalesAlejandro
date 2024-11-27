@@ -34,7 +34,7 @@
                 <input type="password" name="pwd" id="pwd" placeholder="Introduce tu contraseña" required>
                 <p id="errorPwd" class="error"></p>
 
-                <input type="submit" value="Login">
+                <input type="submit" id="boton" value="Login" disabled>
             </form>
         </div>
     </main>
