@@ -4,10 +4,6 @@
         header('Location: ../index.php');
         exit();
     }
-    if($_SERVER['REQUEST_METHOD'] !== 'POST'){
-        header('Location: ../index.php');
-        exit();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +13,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="../index.php"><button class="btn btn-danger">VOLVER</button></a>
     <form method="POST" action="../process/crearPregunta.php">
         <label for="titulo">Introduce un titulo para tu pregunta:<input type="text" name="titulo" id="titulo"></label>
         <p id="errorTitulo" class="error"></p>

@@ -4,6 +4,14 @@
         header('Location:../index.php');
         exit();
     }
+    if(isset($_SESSION['respuestaSubida']) && $_SESSION['respuestaSubida']){
+        echo "<script>let respuestaSubida = true;</script>";
+        unset($_SESSION['respuestaSubida']);
+    }
+    if(isset($_SESSION['preguntaCreada']) && $_SESSION['preguntaCreada']){
+        echo "<script>let preguntaCreada = true;</script>";
+        unset($_SESSION['preguntaCreada']);
+    }
     require_once '../process/conexion.php';
 
     // Recoge la id de la publicacion
@@ -45,17 +53,21 @@
     <a href="../index.php"><button class="btn btn-danger">VOLVER</button></a>
     <h1>PUBLICACION</h1>
     <div>
-        <?php
-            if($pregunta){
-                echo "<div>
-                    <h3>".$pregunta['titulo_preg']."</h3>
-                    <p>".$pregunta['descripcion_preg']."</p>
-                    <p>Creado por: ".$pregunta['username_usu']."</p>
-                    <p>Fecha de creación: ".$pregunta['fecha_publicacion']."</p>
-                </div>";
-            }
-            echo "<h2>RESPUESTAS</h2>";
-        ?>
+        <div>
+            <?php
+                if($pregunta){
+                    echo "<h3>".$pregunta['titulo_preg']."</h3>
+                        <p>".$pregunta['descripcion_preg']."</p>
+                        <p>Creado por: ".$pregunta['username_usu']."</p>
+                        <p>Fecha de creación: ".$pregunta['fecha_publicacion']."</p>";
+                }
+                echo isset($_SESSION['id']) ? "<form method='POST' action='formRespuesta.php'>
+                        <input type='hidden' name='idPregunta' id='idPregunta' value='$idPregunta'>
+                        <input type='submit' value='Responder'>
+                    </form>" : "";
+                echo "<h2>RESPUESTAS</h2>";
+            ?>
+        </div>
         <div>
             <?php
                 if($respuestas){
@@ -69,14 +81,26 @@
                 } else {
                     echo "<p>No hay respuestas para esta pregunta</p>";
                 }
-            echo isset($_SESSION['id']) ? "<form method='POST' action='formRespuesta.php'>
-                    <input type='hidden' name='idPregunta' id='idPregunta' value='<?php echo $idPregunta; ?>'>
-                    <input type='submit' value='Responder'>
-                </form>" : "";
             ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js" integrity="sha256-1m4qVbsdcSU19tulVTbeQReg0BjZiW6yGffnlr/NJu4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        if(typeof respuestaSubida !== 'undefined' && respuestaSubida){
+            Swal.fire({
+                title: 'Respuesta subida',
+                icon:'success',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+        if(typeof preguntaCreada !== "undefined" && preguntaCreada){
+            Swal.fire({
+                title: 'Pregunta creada',
+                icon:'success',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+    </script>
 </body>
 </html>
