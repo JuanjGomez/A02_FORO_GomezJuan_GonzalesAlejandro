@@ -8,10 +8,10 @@
     require_once './process/conexion.php';
     try{
         // Se verifica si el usuario ya existe
-        $sqlSeguridad = "SELECT * FROM tbl_preguntas";
+        $sqlSeguridad = "SELECT p.id_preg, p.titulo_preg, p.descripcion_preg, p.fecha_publicacion, (SELECT COUNT(*) FROM tbl_respuestas r WHERE r.id_preg) AS num_respuestas FROM tbl_preguntas p";
         $stmtSeguridad = $conn->prepare($sqlSeguridad);
         $stmtSeguridad->execute();
-        $resultados = $stmtSeguridad->fetch(PDO::FETCH_ASSOC);
+        $resultados = $stmtSeguridad->fetchAll(PDO::FETCH_ASSOC);
 
         // Se verifica si hay un usuario que existe y es igual a el
         // if($resultados){  //cambiar esto
@@ -93,18 +93,27 @@
         <section id="center">
             <h3>Publicaciones</h3>
             <?php
-                echo isset($_SESSION['id']) ? "<div>
-                    <h5>Que estas pensando?</h5>
-                    <p>Realiza una publicacion ---> <a href='./view/formPregunta.php'><button>Crear Pregunta</button></a></p>
-                </div>" : "";
+                if(isset($_SESSION['id'])){
+                    echo "<div>
+                        <h5>¿Cual es tu duda?</h5>
+                        <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
+                    </div>";
+                }
                 if($resultados){
-                    echo "<div class='card'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>".$resultados['titulo_preg']."</h5>
-                                <p class='card-text'>".$resultados['descripcion_preg']."</p>
-                                <a href='#' class='btn btn-primary'>Ver más</a>
-                            </div>
-                        </div>";
+                    foreach($resultados as $fila){
+                        echo "<div class='card'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>".$fila['titulo_preg']."</h5>
+                                    <p class='card-text'>".$fila['descripcion_preg']."</p>
+                                    <p class='card-text'>".$fila['fecha_publicacion']."</p>
+                                    <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
+                                    <form method='POST' action='./view/verPregunta.php'>
+                                        <input type='hidden' name='idPregunta' id='idPregunta' value='".$fila['id_preg']."'>
+                                        <button type='submit' class='btn btn-primary'>Ver Pregunta</button>
+                                    </form>
+                                </div>
+                            </div><br>";
+                    }
                 } else {
                     echo "<p>No hay publicaciones.</p>";
                 }
