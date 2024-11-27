@@ -18,13 +18,21 @@
         try{
             // Se realiza el insert en la tabla respuestas
             $sqlRespuestas = "INSERT INTO tbl_respuestas (contenido_resp, id_preg, id_usu) VALUES (:contenido_resp, :id_preg, :id_usu)";
-            $stmtRespuestas = $pdo->prepare($sqlRespuestas);
+            $stmtRespuestas = $conn->prepare($sqlRespuestas);
             $stmtRespuestas->bindParam(':contenido_resp', $respuesta);
             $stmtRespuestas->bindParam(':id_preg', $idPregunta);
             $stmtRespuestas->bindParam(':id_usu', $id);
             $stmtRespuestas->execute();
 
             $_SESSION['respuestaSubida'] = true;
+            ?>
+            <form method="POST" action="verPregunta" name="formulario">
+                <input type="hidden" name="idPregunta" value="<?php echo $idPregunta; ?>">
+            </form>
+            <script>
+                document.formulario.submit();
+            </script>
+            <?php
             header('Location:../index.php');
             exit();
         } catch(PDOException $e){

@@ -59,10 +59,10 @@
             $lastId = $conn->lastInsertId();
 
             // Se da acceso al usuario
-            $_SESSION['login'] = true;
-            $_SESSION['id'] = true;
+            $_SESSION['loginSuccess'] = true;
+            $_SESSION['id'] = $lastId;
             $_SESSION['username'] = $username;
-            header('Location:../view/inicio.php');
+            header('Location:../index.php');
             exit();
         } catch (PDOException $e){
             echo "Error: ". $e->getMessage();

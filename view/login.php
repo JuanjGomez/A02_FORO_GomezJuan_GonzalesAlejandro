@@ -1,3 +1,9 @@
+<?php
+    if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+        header('Location: ../index.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +23,9 @@
             <p id="errorUser" class="error"></p>
             <label for="pwd">Password:<input type="password" name="pwd" id="pwd" placeholder="Introduce tu contrasena"></label>
             <p id="errorPwd" class="error"></p>
-            <input type="submit" id="boton" value="Login" disabled>
+            <input type="submit" id="boton" value="Login">
         </form>
     </div>
-    <script src="../validations/js/verifLogin.js"></script>
+    <!-- <script src="../validations/js/verifLogin.js"></script> -->
 </body>
 </html>
