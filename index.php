@@ -48,12 +48,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <?php echo !isset($_SESSION['id']) ? "<form method='POST' action='./view/login.php'>
-                                                <button type='submit' class='btn btn-primary'>Login</button>
-                                            </form>" : ""; ?>
-                        <a class="nav-link active" aria-current="page" href="./view/miPregunta.php">Mis Preguntas</a>
-                    </li>
+                    <?php 
+                    echo isset($_SESSION['id']) ? "<li class='nav-item'>
+                       
+                        <a class='nav-link activ' aria-current='page' href='./view/miPregunta.php'>Mis Preguntas</a>
+                    </li>" : "";
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="formPregunta.php">Link</a>
                     </li>

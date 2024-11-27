@@ -16,7 +16,7 @@ if (isset($_SESSION['preguntaId'])) {
         // Consultar la pregunta actual para modificarla
         $sql = "SELECT * FROM tbl_preguntas WHERE id_preg = :id_preg AND id_usu = :id_usu";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_preg', $preguntaId, PDO::PARAM_INT);
+        $stmt->bindParam(':id_preg', $_SESSION['preguntaId'], PDO::PARAM_INT);
         $stmt->bindParam(':id_usu', $_SESSION['id'], PDO::PARAM_INT);
         $stmt->execute();
         $pregunta = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':id_preg', $_SESSION['preguntaId'], PDO::PARAM_INT);
         $stmt->execute();
 
-        header('Location: miPregunta.php');  // Redirigir después de actualizar
+        header('Location: ../view/miPregunta.php');  // Redirigir después de actualizar
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -76,13 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo_preg']); ?>" required>
+                <p id="errorTitulo" class="error"></p>
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><?php echo htmlspecialchars($pregunta['descripcion_preg']); ?></textarea>
+                <p id="errorDescripcion" class="error"></p>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <input type="submit" id="boton" class="btn btn-primary" disabled></button>
         </form>
     </div>
+    <script src="../validations/js/verifPregunta.js"></script>
 </body>
 </html>
