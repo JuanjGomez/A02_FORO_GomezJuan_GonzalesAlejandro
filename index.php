@@ -49,7 +49,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <?php echo !isset($_SESSION['id']) ? "<form method='POST' action='./view/login.php'>
+                                                <button type='submit' class='btn btn-primary'>Login</button>
+                                            </form>" : ""; ?>
+                        <a class="nav-link active" aria-current="page" href="./view/miPregunta.php">Mis Preguntas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="formPregunta.php">Link</a>
@@ -65,7 +68,6 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
@@ -99,6 +101,8 @@
                         <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
                     </div>";
                 }
+                
+
                 if($resultados){
                     foreach($resultados as $fila){
                         echo "<div class='card'>
