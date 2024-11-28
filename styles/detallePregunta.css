@@ -1,0 +1,71 @@
+/* General Reset */
+body, h1, h3, h5, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a5aaee !important;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container {
+    padding: 20px;
+    margin: auto;
+    max-width: 900px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+    color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-back {
+    margin-bottom: 20px;
+}
+
+.question, .answer {
+    background-color: #fdfdfd;
+    border: 5px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.answer p {
+    margin-bottom: 5px;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #f1f1f1;
+    color: #666;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}

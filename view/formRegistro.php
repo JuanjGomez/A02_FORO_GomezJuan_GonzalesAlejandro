@@ -20,10 +20,10 @@
     <header>
         <a href="../index.php"><button class="btn btn-warning">INICIO</button></a><a href="login.php"><button class="btn btn-success">LOGIN UP</button></a>
     </header>
-    <h1>REGISTRARSE</h1>
     <div>
-        <p id="indicaciones">Completa el formulario</p>
         <form method="POST" action="../process/crearUser.php">
+            <h1><strong>REGISTRARSE</strong></h1>
+            <p id="indicaciones">Completa el formulario</p>
             <label for="username">Nombre de usuario:
                 <input type="text" name="username" id="username" value="<?php if(isset($_POST['username'])) { echo $_POST['username']; } ?>" placeholder="Introduce un username">
             </label>

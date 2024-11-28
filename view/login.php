@@ -17,15 +17,13 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="../index.php">Inicio</a>
-            <a href="formRegistro.php">Registrarse</a>
-        </nav>
+        <a href="../index.php"><button class="btn btn-warning">INICIO</button></a>
+        <a href="formRegistro.php"><button class="btn btn-success">REGISTRARSE</button></a>
     </header>
     <main>
-        <h1>Login</h1>
         <div>
             <form method="POST" action="../process/verificarLogin.php" id="loginForm">
+                <h1><strong>LOGIN UP</strong></h1>
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" placeholder="Introduce tu username" required>
                 <p id="errorUser" class="error"></p>
