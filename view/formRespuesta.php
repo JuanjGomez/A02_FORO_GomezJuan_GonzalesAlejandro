@@ -10,6 +10,16 @@
     } else {
         $idPregunta = htmlspecialchars(trim($_POST['idPregunta']));
     }
+    try{
+        $sqlVerRespuesta = "SELECT * FROM tbl_preguntas WHERE id_preg = :id_preg";
+        $stmtVerRespuesta = $conn->prepare($sqlVerRespuesta);
+        $stmtVerRespuesta->bindParam(':id_preg', $idPregunta);
+        $stmtVerRespuesta->execute();
+        $resultados = $stmtVerRespuesta->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e){
+        echo "Error: ". $e->getMessage();
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
