@@ -1,4 +1,4 @@
-document.getElementById("username").onblur = function validaUsername() {
+document.getElementById("username").oninput = function validaUsername() {
     let username = this.value.trim()
     let errorUser = ""
     if(/^\s+$/.test(username) || username == null || username.length == 0){
@@ -9,7 +9,7 @@ document.getElementById("username").onblur = function validaUsername() {
     document.getElementById("errorUser").innerHTML = errorUser
     verificarForm()
 }
-document.getElementById("nombreReal").onblur = function validaNombreReal() {
+document.getElementById("nombreReal").oninput = function validaNombreReal() {
     let nombreReal = this.value.trim()
     let errorReal = ""
     if(/^\s+$/.test(nombreReal) || nombreReal == null || nombreReal.length == 0){
@@ -26,7 +26,7 @@ document.getElementById("nombreReal").onblur = function validaNombreReal() {
     document.getElementById("errorReal").innerHTML = errorReal
     verificarForm()
 }
-document.getElementById("email").onblur = function validaEmail() {
+document.getElementById("email").oninput = function validaEmail() {
     let email = this.value.trim()
     let errorEmail = ""
     if(/^\s+$/.test(email) || email == null || email.length == 0){
@@ -41,7 +41,7 @@ document.getElementById("email").onblur = function validaEmail() {
     document.getElementById("errorEmail").innerHTML = errorEmail
     verificarForm()
 }
-document.getElementById("pwd").onblur = function validaPwd() {
+document.getElementById("pwd").oninput = function validaPwd() {
     let pwd = this.value.trim()
     let errorPwd = ""
     if(/^\s+$/.test(pwd) || pwd == null || pwd.length == 0){
@@ -58,7 +58,7 @@ document.getElementById("pwd").onblur = function validaPwd() {
     document.getElementById("errorPwd").innerHTML = errorPwd
     verificarForm()
 }
-document.getElementById("pwd2").onblur = function validaIgualdadPwd(){
+document.getElementById("pwd2").oninput = function validaIgualdadPwd(){
     let pwd = document.getElementById("pwd").value.trim()
     let pwd2 = this.value.trim()
     let errorPwd2 = ""

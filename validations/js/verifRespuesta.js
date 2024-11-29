@@ -1,4 +1,4 @@
-document.getElementById("boton").onblur = function validaRespuesta() {
+document.getElementById("boton").oninput = function validaRespuesta() {
     let respuesta = this.value.trim()
     let errorRespuesta = document.getElementById("errorRespuesta")
     
