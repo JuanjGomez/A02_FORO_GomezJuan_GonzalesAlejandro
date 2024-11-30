@@ -19,10 +19,10 @@
     <a href="../index.php"><button class="btn btn-danger">VOLVER</button></a>
     <form method="POST" action="../process/crearPregunta.php">
         <h1><strong>NUEVA PREGUNTA</strong></h1>
-        <label for="titulo">Introduce un titulo para tu pregunta:</label>
+        <label for="titulo">Introduce un título para tu pregunta:</label>
         <input type="text" name="titulo" id="titulo">
         <p id="errorTitulo" class="error"></p>
-        <label for="descripcion">Introduce una descripcion para tu pregunta:</label>
+        <label for="descripcion">Introduce una descripción para tu pregunta:</label>
         <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
         <p id="errorDescripcion" class="error"></p>
         <input type="submit" id="boton" value="Publicar" disabled>

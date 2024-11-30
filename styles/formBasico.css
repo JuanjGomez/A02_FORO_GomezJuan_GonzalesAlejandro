@@ -58,11 +58,10 @@ form textarea:focus {
 
 /* Error Messages */
 .error {
-    color: #ff4d4d;
+    color: #ff4d4d; /* Color rojo */
     font-size: 14px;
     margin-top: -10px;
     margin-bottom: 15px;
-    display: none;
 }
 
 /* Submit Button */
@@ -101,4 +100,24 @@ form input[type="submit"]:hover {
 
 .btn-danger:hover {
     background-color: #a71d2a;
+}
+
+.card {
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.card h5 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 strong{
+    color: #0056b3;
+    text-align: center;
 }

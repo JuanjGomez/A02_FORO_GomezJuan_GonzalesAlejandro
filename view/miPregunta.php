@@ -30,8 +30,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Preguntas</title>
+    <link rel="stylesheet" href="../styles/miPregunta.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles/inicio.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -46,15 +46,16 @@ try {
                         <a class="nav-link" href="formPregunta.php">Crear Pregunta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cerrarSesion.php">Cerrar Sesión</a>
+                        <a class="nav-link" href="../index.php">VOLVER</a>
                     </li>
                 </ul>
+                <a href="../process/cerrarSession.php"><button class="btn btn-danger">Cerrar Sesion</button></a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h2>Mis Preguntas</h2>
+        <h2><strong>Mis Preguntas</strong></h2>
         
         <?php if (count($preguntas) > 0): ?>
             <div class="list-group">

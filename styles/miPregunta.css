@@ -1,0 +1,148 @@
+/* General Reset */
+body, h1, h2, h3, h5, p, a, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a5aaee !important; /* Fondo con un azul claro */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-bottom: 50px; /* Espacio para el final */
+}
+
+/* Navbar */
+nav.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+nav.navbar .navbar-brand {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+nav.navbar a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+nav.navbar a:hover {
+    text-decoration: underline;
+}
+
+nav.navbar button {
+    margin-left: 10px;
+}
+
+/* Main Container */
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.container h2 {
+    color: #007bff;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container h2 strong{
+    color: #007bff;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* List of Questions */
+.list-group {
+    margin-top: 15px;
+}
+
+.list-group-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item h5 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.list-group-item p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.list-group-item small {
+    color: #888;
+    font-size: 0.875rem;
+}
+
+/* Buttons */
+.list-group-item .btn {
+    margin-right: 10px;
+}
+
+.list-group-item .btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.list-group-item .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.list-group-item .btn-warning {
+    color: #fff;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.list-group-item .btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.list-group-item .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.list-group-item .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Footer */
+footer {
+    background-color: #f1f1f1;
+    color: #666;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 0.875rem;
+}
