@@ -19,13 +19,15 @@
     <a href="../index.php"><button class="btn btn-danger">VOLVER</button></a>
     <form method="POST" action="../process/crearPregunta.php">
         <h1><strong>NUEVA PREGUNTA</strong></h1>
-        <label for="titulo">Introduce un titulo para tu pregunta:<input type="text" name="titulo" id="titulo"></label>
+        <label for="titulo">Introduce un título para tu pregunta:</label>
+        <input type="text" name="titulo" id="titulo">
         <p id="errorTitulo" class="error"></p>
-        <label for="descripcion">Introduce una descripcion para tu pregunta:<textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea></label>
+        <label for="descripcion">Introduce una descripción para tu pregunta:</label>
+        <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
         <p id="errorDescripcion" class="error"></p>
         <input type="submit" id="boton" value="Publicar" disabled>
     </form>
-    <script src="../validations\js/verifPregunta.js"></script>
+    <script src="../validations/js/verifPregunta.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js" integrity="sha256-1m4qVbsdcSU19tulVTbeQReg0BjZiW6yGffnlr/NJu4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

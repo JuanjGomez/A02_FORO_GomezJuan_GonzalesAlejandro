@@ -54,30 +54,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Pregunta</title>
+    <link rel="stylesheet" href="../styles/formBasico.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <a href="../view/miPregunta.php"><button class="btn btn-danger">VOLVER</button></a>
     <div class="container mt-5">
-        <h2>Modificar Pregunta</h2>
-
         <form method="POST" action="modificarPregunta.php">
             <input type="hidden" name="id_preg" value="<?php echo $pregunta['id_preg']; ?>">
-
+            <h2><strong>Modificar Pregunta</strong></h2>
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo_preg']); ?>" required>
+                <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo_preg']); ?>">
                 <p id="errorTitulo" class="error"></p>
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><?php echo htmlspecialchars($pregunta['descripcion_preg']); ?></textarea>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="4"><?php echo htmlspecialchars($pregunta['descripcion_preg']); ?></textarea>
                 <p id="errorDescripcion" class="error"></p>
             </div>
             <input type="submit" id="boton" class="btn btn-primary" disabled></button>

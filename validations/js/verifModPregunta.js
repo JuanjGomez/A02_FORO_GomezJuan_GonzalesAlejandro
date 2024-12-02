@@ -1,5 +1,5 @@
 // Validación del título
-document.getElementById("titulo").onblur = function validaTitulo() {
+document.getElementById("titulo").oninput = function validaTitulo() {
     let titulo = this.value.trim();
     let errorTitulo = "";
     if (/^\s+$/.test(titulo) || titulo == null || titulo.length == 0) {
@@ -12,7 +12,7 @@ document.getElementById("titulo").onblur = function validaTitulo() {
 };
 
 // Validación de la descripción
-document.getElementById("descripcion").onblur = function validaDescripcion() {
+document.getElementById("descripcion").oninput = function validaDescripcion() {
     let descripcion = this.value.trim();
     let errorDescripcion = "";
     if (/^\s+$/.test(descripcion) || descripcion == null || descripcion.length == 0) {

@@ -1,4 +1,4 @@
-document.getElementById("username").onblur = function validaUser() {
+document.getElementById("username").oninput = function validaUser() {
     let username = this.value.trim()
     let errorUser = ""
     if (username.length == 0 || username == null || /^\s+$/.test(username)) {
@@ -15,7 +15,7 @@ document.getElementById("username").onblur = function validaUser() {
     document.getElementById("errorUser").innerHTML = errorUser
     validaForm()
 }
-document.getElementById("pwd").onblur = function validaPwd() {
+document.getElementById("pwd").oninput = function validaPwd() {
     let pwd = this.value.trim()
     let errorPwd = ""
     if(pwd.length == 0 || pwd == null || /^\s+$/.test(pwd)){
