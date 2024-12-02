@@ -1,0 +1,37 @@
+/* Estilos para la página de amigos en chats.php */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.amigos-list {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.amigos-list a {
+    display: block;
+    padding: 10px;
+    background-color: #e1f7d5;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.amigos-list a:hover {
+    background-color: #d4edda;
+}
