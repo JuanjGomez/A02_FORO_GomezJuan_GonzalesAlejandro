@@ -69,8 +69,8 @@
             ?>
         </div>
 
-        <!-- Formulario de respuesta (si el usuario está logueado) -->
-        <?php if (isset($_SESSION['id'])): ?>
+        <!-- Formulario de respuesta (si el usuario está logueado y no es el autor de la pregunta) -->
+        <?php if (isset($_SESSION['id']) && $_SESSION['id'] != $pregunta['id_usu']): ?>
             <form method="POST" action="formRespuesta.php">
                 <input type="hidden" name="idPregunta" id="idPregunta" value="<?php echo htmlspecialchars($idPregunta); ?>">
                 <input type="submit" value="Responder">

@@ -1,32 +1,24 @@
 <?php
-    session_start();
-    if(isset($_SESSION['loginSuccess']) && $_SESSION['loginSuccess']){
-        $user = $_SESSION['username'];
-        echo "<script> let loginSuccess = true; let username = '$user';</script>";
-        unset($_SESSION['loginSuccess']);
-    }
-    require_once './process/conexion.php';
-    try{
-        // Se verifica si el usuario ya existe
-        $sqlSeguridad = "SELECT p.id_preg, p.titulo_preg, p.descripcion_preg, p.fecha_publicacion, (SELECT COUNT(*) FROM tbl_respuestas r WHERE r.id_preg) AS num_respuestas FROM tbl_preguntas p";
-        $stmtSeguridad = $conn->prepare($sqlSeguridad);
-        $stmtSeguridad->execute();
-        $resultados = $stmtSeguridad->fetchAll(PDO::FETCH_ASSOC);
-
-        // Se verifica si hay un usuario que existe y es igual a el
-        // if($resultados){  //cambiar esto
-        //         $_SESSION['identico'] = true;
-        //         header('Location: ../view/formRegistro.php');
-        //         exit();
-            
-        // }
-
-
-    } catch (PDOException $e){
-        echo "Error: ". $e->getMessage();
-        die();
-    }
-    require_once './process/busqueda.php';
+session_start();
+if (isset($_SESSION['loginSuccess']) && $_SESSION['loginSuccess']) {
+    $user = $_SESSION['username'];
+    echo "<script> let loginSuccess = true; let username = '$user';</script>";
+    unset($_SESSION['loginSuccess']);
+}
+require_once './process/conexion.php';
+try {
+    // Se verifica si el usuario ya existe
+    $sqlSeguridad = "SELECT p.id_preg, p.titulo_preg, p.descripcion_preg, p.fecha_publicacion, 
+                    (SELECT COUNT(*) FROM tbl_respuestas r WHERE r.id_preg = p.id_preg) AS num_respuestas 
+                     FROM tbl_preguntas p";
+    $stmtSeguridad = $conn->prepare($sqlSeguridad);
+    $stmtSeguridad->execute();
+    $resultados = $stmtSeguridad->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+    die();
+}
+require_once './process/busqueda.php';
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +52,6 @@
                 <form class="d-flex" role="search" method="GET" action="">
                     <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                    
                 </form>
             </div>
         </div>
@@ -79,15 +70,15 @@
         <section id="center">
             <h3>Publicaciones</h3>
             <?php
-                if(isset($_SESSION['id'])){
+                if (isset($_SESSION['id'])) {
                     echo "<div class='card'>
                         <h5>¿Cual es tu duda?</h5>
                         <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
                     </div>";
                 }
-                if(!isset($_GET['query'])){
-                    if($resultados){
-                        foreach($resultados as $fila){
+                if (!isset($_GET['query'])) {
+                    if ($resultados) {
+                        foreach ($resultados as $fila) {
                             echo "<div class='card'>
                                     <div class='card-body'>
                                         <h5 class='card-title'>".$fila['titulo_preg']."</h5>
@@ -105,8 +96,8 @@
                         echo "<p>No hay publicaciones.</p>";
                     }
                 } else {
-                    if($resultadosPreguntas){
-                        foreach($resultadosPreguntas as $fila){
+                    if ($resultadosPreguntas) {
+                        foreach ($resultadosPreguntas as $fila) {
                             echo "<div class='card'>
                                     <div class='card-body'>
                                         <h5 class='card-title'>".$fila['titulo_preg']."</h5>
@@ -129,14 +120,20 @@
         <section id="right">
             <h3>USUARIOS</h3>
             <?php
-                if(isset($_GET['query'])){
-                    if($resultadosUsuarios){
-                        foreach($resultadosUsuarios as $fila){
-                            echo "<div>
-                            <p>Usuario: ".$fila['username_usu']."</p>
-                            <p>Nombre: ".$fila['nombre_real']."</p>
-                            </div>";
+                if (isset($_GET['query'])) {
+                    if ($resultadosUsuarios) {
+                        echo "<div>";
+                        foreach ($resultadosUsuarios as $fila) {
+                            echo "<div style='margin-bottom: 10px;'>
+                                    <h5>Usuario: ".$fila['username_usu']."</h5>
+                                    <p>Nombre: ".$fila['nombre_real']."</p>
+                                    <form method='POST' action='./view/verPerfil.php'>
+                                        <input type='hidden' name='idUsuario' value='".$fila['id_usu']."'>
+                                        <button type='submit'>Ver Perfil</button>
+                                    </form>
+                                  </div>";
                         }
+                        echo "</div>"; // Cierre del contenedor
                     } else {
                         echo "<p>No hay usuarios encontrados.</p>";
                     }
