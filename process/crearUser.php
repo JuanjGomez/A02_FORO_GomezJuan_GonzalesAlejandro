@@ -35,12 +35,13 @@
                 //     echo "</div><br>";
                   //cambiar esto
                     $_SESSION['identico'] = true;
-                    echo "<form method='POST' action='../view/formRegistro.php'>";
+                    echo "<form method='POST' action='../view/formRegistro.php' name='formulario'>";
                     echo "<input type='hidden' name='username' value='" . $username ."'>";
                     echo "<input type='hidden' name='nombreReal' value='" . $nombreReal ."'>";
                     echo "<input type='hidden' name='email' value='" . $email ."'>";
                     echo "<button type='submit' class='btn btn-primary'>Enviar Solicitud de Amistad</button>";
                     echo "</form>";
+                    echo "<script>document.formulario.submit();</script>";
                     exit();
                 
             }

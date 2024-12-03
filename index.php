@@ -8,7 +8,7 @@
     require_once './process/conexion.php';
     try{
         // Se verifica si el usuario ya existe
-        $sqlSeguridad = "SELECT p.id_preg, p.titulo_preg, p.descripcion_preg, p.fecha_publicacion, (SELECT COUNT(*) FROM tbl_respuestas r WHERE r.id_preg) AS num_respuestas FROM tbl_preguntas p";
+        $sqlSeguridad = "SELECT p.id_preg, p.titulo_preg, p.descripcion_preg, p.fecha_publicacion, (SELECT COUNT(*) FROM tbl_respuestas r WHERE r.id_preg = p.id_preg) AS num_respuestas FROM tbl_preguntas p";
         $stmtSeguridad = $conn->prepare($sqlSeguridad);
         $stmtSeguridad->execute();
         $resultados = $stmtSeguridad->fetchAll(PDO::FETCH_ASSOC);
@@ -74,15 +74,15 @@
     </nav>
     <div id="principal">
         <section id="left">
-            <h3>Funcionalidades</h3>
+            <h3 class="center">Funcionalidades</h3>
         </section>
         <section id="center">
-            <h3>Publicaciones</h3>
+            <h3 class="center">Publicaciones</h3>
             <?php
                 if(isset($_SESSION['id'])){
                     echo "<div class='card'>
-                        <h5>¿Cual es tu duda?</h5>
-                        <p>Realiza una publicacion --> <a href='./view/formPregunta.php'><button class='btn btn-primary'>Crear Pregunta</button></a></p>
+                        <h5><strong>¿Cual es tu duda?</strong></h5>
+                        <p>Realiza una publicacion <a href='./view/formPregunta.php'><button class='btn btn-success'>Crear Pregunta</button></a></p>
                     </div>";
                 }
                 if(!isset($_GET['query'])){
@@ -90,7 +90,7 @@
                         foreach($resultados as $fila){
                             echo "<div class='card'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>".$fila['titulo_preg']."</h5>
+                                        <h5 class='card-title'><strong>".$fila['titulo_preg']."</strong></h5>
                                         <p class='card-text'>".$fila['descripcion_preg']."</p>
                                         <p class='card-text'>".$fila['fecha_publicacion']."</p>
                                         <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
@@ -109,7 +109,7 @@
                         foreach($resultadosPreguntas as $fila){
                             echo "<div class='card'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>".$fila['titulo_preg']."</h5>
+                                        <h5 class='card-title'><strong>".$fila['titulo_preg']."</strong></h5>
                                         <p class='card-text'>".$fila['descripcion_preg']."</p>
                                         <p class='card-text'>".$fila['fecha_publicacion']."</p>
                                         <p class='card-text'>Respuestas: ".$fila['num_respuestas']."</p>
@@ -127,7 +127,7 @@
             ?>
         </section>
         <section id="right">
-            <h3>USUARIOS</h3>
+            <h3 class="center">USUARIOS</h3>
             <?php
                 if(isset($_GET['query'])){
                     if($resultadosUsuarios){

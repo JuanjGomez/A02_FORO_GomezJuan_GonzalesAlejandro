@@ -30,6 +30,9 @@ h1, h3 {
 
 .btn-back {
     margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .question, .answer {
@@ -68,4 +71,44 @@ footer {
     padding: 10px;
     margin-top: 20px;
     border-top: 1px solid #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px; /* Reduce font size slightly for smaller screens */
+    }
+
+    .container {
+        padding: 15px;
+        margin: 10px;
+        max-width: 100%; /* Full width for mobile */
+    }
+
+    h1, h3 {
+        font-size: 18px; /* Adjust heading size for mobile */
+    }
+
+    .btn-back {
+        width: 100%; /* Button spans full width */
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .question, .answer {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-width: 3px; /* Reduce border width for smaller screens */
+    }
+
+    form input[type="submit"] {
+        width: 100%; /* Full width for the submit button */
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 15px;
+        font-size: 14px;
+    }
 }
