@@ -43,11 +43,7 @@ try {
                         <a class="nav-link" href="formPregunta.php">Crear Pregunta</a>
                     </li>
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <a class="nav-link" href="../process/cerrarSession.php">Cerrar Sesión</a>
-=======
                         <a class="nav-link" href="../index.php">VOLVER</a>
->>>>>>> 01afac9717c8efafb9ecab19ab71d8a0bf78e05d
                     </li>
                 </ul>
                 <a href="../process/cerrarSession.php"><button class="btn btn-danger">Cerrar Sesion</button></a>

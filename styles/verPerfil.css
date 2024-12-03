@@ -1,40 +1,134 @@
-/* Estilos para la página de perfil */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* General Reset */
+body, h1, h3, h5, p, a, button {
     margin: 0;
     padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
 }
 
-h1 {
-    font-size: 24px;
+body {
+    background-color: #a5aaee;
     color: #333;
-    text-align: center;
-    margin-top: 20px;
-}
-
-p {
     font-size: 16px;
-    color: #555;
-    text-align: center;
-    margin-bottom: 10px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-form {
-    text-align: center;
-    margin-top: 20px;
-}
-
-button {
+/* Botón de volver */
+.btn-back {
+    margin: 20px;
     padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-back:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Encabezado */
+h1 {
+    font-size: 26px;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Texto */
+p {
+    font-size: 18px;
+    color: #495057;
+    margin: 10px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Botones */
+button {
+    padding: 12px 20px;
     font-size: 16px;
     color: white;
     background-color: #007bff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Formularios */
+form {
+    margin-top: 20px;
+}
+
+form input[type="hidden"] {
+    display: none;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .btn-back {
+        margin: 15px;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
 }
